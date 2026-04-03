@@ -795,13 +795,13 @@ elif page == "Order":
     # Show preview if generated
     if "order_preview" in st.session_state:
         op = st.session_state.order_preview
-        st.markdown(f\'\'\'<div class="sf-card">
+        st.markdown(f'''<div class="sf-card">
             <div style="font-size:11px;color:#8494a7;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;">Order Preview</div>
             <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">To:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{DW_ORDERS_EMAIL}</span></div>
             <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">CC:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{DW_CC_EMAILS}</span></div>
             <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">Subject:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{op["subject"]}</span></div>
             <div style="background:#f8fafc;border-radius:10px;padding:14px;margin-top:12px;font-size:13px;color:#334155;line-height:1.6;border:1px solid #e2e8f0;">{op["body"].replace(chr(10),"<br>")}</div>
-        </div>\'\'\', unsafe_allow_html=True)
+        </div>''', unsafe_allow_html=True)
 
         scol1, scol2 = st.columns(2)
         if scol1.button("Send Order Email", type="primary", key="send_order"):
