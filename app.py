@@ -11,15 +11,15 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import decode_header
 
-# âââ PAGE CONFIG ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-st.set_page_config(page_title="Stancil Field Manager", page_icon="ð ", layout="wide", initial_sidebar_state="collapsed")
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ PAGE CONFIG Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+st.set_page_config(page_title="Stancil Field Manager", page_icon="Ã°ÂÂÂ ", layout="wide", initial_sidebar_state="collapsed")
 
-# âââ CUSTOM CSS â Modern Mobile-First Design âââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ CUSTOM CSS Ã¢ÂÂ Modern Mobile-First Design Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-    /* ââ Reset & Base ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Reset & Base Ã¢ÂÂÃ¢ÂÂ */
     #MainMenu, footer, header {visibility: hidden;}
     html, body, [data-testid="stAppViewContainer"] {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -45,7 +45,7 @@ st.markdown("""
         background: rgba(255,255,255,0.12); color: white !important; font-weight: 600;
     }
 
-    /* ââ Typography ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Typography Ã¢ÂÂÃ¢ÂÂ */
     h1, h2, h3, h4 {font-family: 'Inter', sans-serif; letter-spacing: -0.02em;}
     .page-title {
         font-size: 22px; font-weight: 700; color: #0f1d2e;
@@ -53,7 +53,7 @@ st.markdown("""
     }
     .page-subtitle {font-size: 13px; color: #8494a7; margin: 0 0 20px 0; font-weight: 400;}
 
-    /* ââ Cards ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Cards Ã¢ÂÂÃ¢ÂÂ */
     .sf-card {
         background: white; border-radius: 14px; padding: 18px;
         box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
@@ -62,7 +62,7 @@ st.markdown("""
     }
     .sf-card:hover {box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);}
 
-    /* ââ Metric Cards ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Metric Cards Ã¢ÂÂÃ¢ÂÂ */
     .metric-card {
         background: white; border-radius: 14px; padding: 16px 12px;
         box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-align: center;
@@ -76,7 +76,7 @@ st.markdown("""
     .metric-value {font-size: 26px; font-weight: 700; color: #0f1d2e; line-height: 1.1;}
     .metric-label {font-size: 11px; color: #8494a7; margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;}
 
-    /* ââ Badges ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Badges Ã¢ÂÂÃ¢ÂÂ */
     .sf-badge {
         display: inline-flex; align-items: center; padding: 4px 10px;
         border-radius: 20px; font-size: 12px; font-weight: 600;
@@ -94,7 +94,7 @@ st.markdown("""
     .badge-discount {background: #ffe4e6; color: #9f1239;}
     .badge-notstarted {background: #f3f4f6; color: #6b7280;}
 
-    /* ââ Community Cards ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Community Cards Ã¢ÂÂÃ¢ÂÂ */
     .comm-card {
         background: white; border-radius: 14px; padding: 16px 18px;
         box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 10px;
@@ -112,7 +112,7 @@ st.markdown("""
     .comm-stat-val {font-weight: 700; font-size: 15px; line-height: 1.2;}
     .comm-stat-label {font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.8;}
 
-    /* ââ Forms ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Forms Ã¢ÂÂÃ¢ÂÂ */
     div[data-testid="stForm"] {
         background: white; border-radius: 14px; padding: 20px;
         border: 1px solid rgba(0,0,0,0.06);
@@ -129,7 +129,7 @@ st.markdown("""
         border-color: #1a56db !important; box-shadow: 0 0 0 3px rgba(26,86,219,0.1) !important;
     }
 
-    /* ââ Buttons ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Buttons Ã¢ÂÂÃ¢ÂÂ */
     .stButton > button {
         border-radius: 10px; font-family: 'Inter', sans-serif;
         font-weight: 600; font-size: 14px; padding: 8px 20px;
@@ -142,7 +142,7 @@ st.markdown("""
         background: #1e40af; box-shadow: 0 4px 12px rgba(26,86,219,0.3);
     }
 
-    /* ââ Alerts ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Alerts Ã¢ÂÂÃ¢ÂÂ */
     .sf-alert {
         padding: 14px 16px; border-radius: 12px; margin: 12px 0;
         font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 10px;
@@ -151,20 +151,20 @@ st.markdown("""
     .sf-alert-success {background: #dcfce7; color: #166534; border: 1px solid #bbf7d0;}
     .sf-alert-info {background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;}
 
-    /* ââ Success Box ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Success Box Ã¢ÂÂÃ¢ÂÂ */
     .success-box {
         background: #dcfce7; padding: 14px 16px; border-radius: 12px;
         margin: 10px 0; border: 1px solid #bbf7d0; color: #166534;
         font-size: 13px; font-weight: 500;
     }
 
-    /* ââ Expanders ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Expanders Ã¢ÂÂÃ¢ÂÂ */
     .streamlit-expanderHeader {
         font-size: 14px; font-weight: 600; font-family: 'Inter', sans-serif;
         border-radius: 12px;
     }
 
-    /* ââ EPO Row ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ EPO Row Ã¢ÂÂÃ¢ÂÂ */
     .epo-row {
         background: white; border-radius: 12px; padding: 14px 16px;
         margin-bottom: 8px; border: 1px solid rgba(0,0,0,0.06);
@@ -174,7 +174,7 @@ st.markdown("""
     .epo-lot {font-size: 14px; font-weight: 600; color: #0f1d2e;}
     .epo-meta {font-size: 12px; color: #8494a7; font-weight: 400;}
 
-    /* ââ Lot Row ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Lot Row Ã¢ÂÂÃ¢ÂÂ */
     .lot-row {
         display: flex; justify-content: space-between; align-items: center;
         padding: 12px 16px; background: white; border-radius: 12px;
@@ -184,18 +184,24 @@ st.markdown("""
     .lot-num {font-size: 14px; font-weight: 600; color: #0f1d2e; min-width: 50px;}
     .lot-notes {font-size: 11px; color: #8494a7; margin-top: 2px;}
 
-    /* ââ Dividers ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ Dividers Ã¢ÂÂÃ¢ÂÂ */
     hr {border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;}
 
-    /* ââ Footer ââ */
-    .sf-footer {
+    /* Ã¢ÂÂÃ¢ÂÂ Footer Ã¢ÂÂÃ¢ÂÂ */
+    /* Nav Buttons */
+    div[data-testid="stHorizontalBlock"] .stButton > button {
+        font-size: 11px !important; padding: 6px 8px !important;
+        border-radius: 8px !important; min-height: 0 !important;
+        height: auto !important; white-space: nowrap !important;
+    }
+        .sf-footer {
         text-align: center; font-size: 11px; color: #8494a7;
         padding: 16px 0; margin-top: 20px; font-weight: 500;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# âââ CONSTANTS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ CONSTANTS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(DATA_DIR, "data.json")
 CONFIG_FILE = os.path.join(DATA_DIR, "config.json")
@@ -252,7 +258,7 @@ POINTUP_SUBS = {
     "Sugar Creek":"Edwin","Plot":"Edwin","Anderson Townhomes":"Luis A. Lopez",
 }
 
-# âââ DEFAULT DATA âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ DEFAULT DATA Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 DEFAULT_COMMUNITIES = {
     "Odell Park": {"builder":"DRB","lots":{
         "1":{"stage":"Waiting for QC","notes":"Repairs need to be sanded and painted"},
@@ -312,7 +318,7 @@ DEFAULT_COMMUNITIES = {
     },"subs":{t:"America Drywall" for t in DRYWALL_STAGES},"durations":{"Hang":1,"Scrap":1,"Tape":2,"Bed":2,"Skim":2,"Sand":1}},
 }
 
-# âââ DATA / CONFIG ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ DATA / CONFIG Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 def load_data():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE) as f: return json.load(f)
@@ -337,7 +343,7 @@ if "config" not in st.session_state:
 def get_data(): return st.session_state.data
 def persist(): save_data(st.session_state.data)
 
-# âââ EMAIL ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ EMAIL Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 def send_email(to, subject, body, cc=None):
     cfg = st.session_state.config
     app_pw = cfg.get("gmail_app_password","")
@@ -363,7 +369,7 @@ def send_email(to, subject, body, cc=None):
     except Exception as e:
         return False, f"Failed to send: {str(e)}"
 
-# âââ HELPERS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ HELPERS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 def count_by_category(lots):
     c = {"drywall":0,"paint":0,"qc":0,"ho":0,"waiting":0,"complete":0,"not_started":0}
     for ld in lots.values():
@@ -386,7 +392,7 @@ def _epo_days_open(epo):
     except Exception:
         return 0
 
-# âââ BUILDER CONTACT MAP (To â community mapping) ââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ BUILDER CONTACT MAP (To Ã¢ÂÂ community mapping) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 BUILDER_CONTACTS = {
     "angel.serrano@pulte.com": {"name": "Angel Serrano", "builder": "Pulte", "communities": ["Mallard Park", "Galloway"]},
     "gus.schnitker@pulte.com": {"name": "Gus Schnitker", "builder": "Pulte", "communities": ["Mallard Park", "Galloway"]},
@@ -586,7 +592,7 @@ def generate_schedule(comm_name, lot_num, start_date, data):
         schedule.append({"task":task,"sub":subs.get(task,"TBD"),"date":cur.strftime("%m/%d/%Y"),"date_obj":cur})
     return schedule
 
-# âââ SHARED REPORT VIEW ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ SHARED REPORT VIEW Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # If ?view=report is in the URL, show read-only dashboard for area manager
 query_params = st.query_params
 if query_params.get("view") == "report":
@@ -595,7 +601,7 @@ if query_params.get("view") == "report":
     st.markdown('<div style="text-align:center;padding:20px 0 10px;">'
                 '<div style="font-size:22px;font-weight:700;color:#0f1d2e;letter-spacing:-0.03em;">Stancil Field Manager</div>'
                 '<div style="font-size:13px;color:#8494a7;margin-top:2px;">Job Report</div></div>', unsafe_allow_html=True)
-    st.markdown(f'<div style="text-align:center;font-size:13px;color:#8494a7;margin-bottom:20px;">Week of {datetime.date.today().strftime("%B %d, %Y")} Â· Gabriel Jordao</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align:center;font-size:13px;color:#8494a7;margin-bottom:20px;">Week of {datetime.date.today().strftime("%B %d, %Y")} ÃÂ· Gabriel Jordao</div>', unsafe_allow_html=True)
 
     total_lots = sum(len(c["lots"]) for c in comms.values())
     total_active = sum(1 for c in comms.values() for l in c["lots"].values() if l.get("stage") and l["stage"]!="Complete")
@@ -657,10 +663,10 @@ if query_params.get("view") == "report":
         st.markdown(lots_html, unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown('<div class="sf-footer">Stancil Field Manager v2.0 Â· Shared Report</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sf-footer">Stancil Field Manager v2.0 ÃÂ· Shared Report</div>', unsafe_allow_html=True)
     st.stop()
 
-# âââ NAV ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ NAV Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # TOP NAVIGATION BAR
 st.markdown('<div style="font-size:20px;font-weight:700;color:#0f1d2e;letter-spacing:-0.03em;margin-bottom:2px;">Stancil <span style="font-weight:400;color:#8494a7;font-size:14px;">Field Manager</span></div>', unsafe_allow_html=True)
 
@@ -680,9 +686,9 @@ for i, opt in enumerate(nav_options):
 page = st.session_state.current_page
 st.markdown("---")
 
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # DASHBOARD
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 if page == "Dashboard":
     st.markdown('<div class="page-title">Dashboard</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="page-subtitle">Week of {datetime.date.today().strftime("%B %d, %Y")}</div>', unsafe_allow_html=True)
@@ -705,15 +711,15 @@ if page == "Dashboard":
     epo_overdue = [e for e in epo_pending if _epo_days_open(e) >= 4]
     epo_confirmed = len([e for e in epo_log if e.get("status") == "Confirmed"])
     epo_total = len(epo_log)
-    capture_rate = f"{(epo_confirmed/epo_total*100):.0f}%" if epo_total > 0 else "â"
+    capture_rate = f"{(epo_confirmed/epo_total*100):.0f}%" if epo_total > 0 else "Ã¢ÂÂ"
 
     if epo_overdue:
-        st.markdown(f'<div class="sf-alert sf-alert-warn">â &nbsp;&nbsp;<strong>EPO Follow-Up Needed ({len(epo_overdue)})</strong></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="sf-alert sf-alert-warn">Ã¢ÂÂ &nbsp;&nbsp;<strong>EPO Follow-Up Needed ({len(epo_overdue)})</strong></div>', unsafe_allow_html=True)
         for e in epo_overdue:
             days = _epo_days_open(e)
-            st.markdown(f'<div class="epo-row"><div class="epo-header"><span class="epo-lot">Lot {e["lot"]} â {e.get("neighborhood","")}</span>'
+            st.markdown(f'<div class="epo-row"><div class="epo-header"><span class="epo-lot">Lot {e["lot"]} Ã¢ÂÂ {e.get("neighborhood","")}</span>'
                         f'<span class="sf-badge badge-pending">{days}d open</span></div>'
-                        f'<div class="epo-meta">${e.get("amount","")} Â· Follow up needed</div></div>', unsafe_allow_html=True)
+                        f'<div class="epo-meta">${e.get("amount","")} ÃÂ· Follow up needed</div></div>', unsafe_allow_html=True)
 
     st.markdown("---")
 
@@ -743,22 +749,22 @@ if page == "Dashboard":
         st.markdown("---")
         st.markdown(f'<div class="sf-card"><div style="display:flex;justify-content:space-between;align-items:center;">'
                     f'<div><span style="font-size:14px;font-weight:600;color:#0f1d2e;">EPO Summary</span><br>'
-                    f'<span style="font-size:12px;color:#8494a7;">{len(epo_pending)} pending Â· {epo_confirmed} confirmed</span></div>'
+                    f'<span style="font-size:12px;color:#8494a7;">{len(epo_pending)} pending ÃÂ· {epo_confirmed} confirmed</span></div>'
                     f'<span style="font-size:22px;font-weight:700;color:#1a56db;">{capture_rate}</span></div></div>', unsafe_allow_html=True)
 
     # Share report link
     st.markdown("---")
     st.markdown('<div style="font-size:14px;font-weight:600;color:#0f1d2e;margin-bottom:8px;">Share Report</div>', unsafe_allow_html=True)
     st.markdown('<div style="font-size:12px;color:#8494a7;margin-bottom:10px;">Share this link with your area manager. '
-                'They can see every lot, stage, and notes â read-only, no login needed.</div>', unsafe_allow_html=True)
+                'They can see every lot, stage, and notes Ã¢ÂÂ read-only, no login needed.</div>', unsafe_allow_html=True)
     # Build the share URL
     share_url = "?view=report"
     st.code(share_url, language=None)
     st.caption("When deployed, this will be your full URL + ?view=report (e.g. https://stancil-field-manager.streamlit.app/?view=report)")
 
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # JOB TRACKER
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 elif page == "Job Tracker":
     st.markdown('<div class="page-title">Job Tracker</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Track lots and stages by community</div>', unsafe_allow_html=True)
@@ -784,7 +790,7 @@ elif page == "Job Tracker":
         current_stage = lot_data.get("stage","")
         stage_display = current_stage if current_stage else "Not Started"
         note_indicator = " *" if lot_data.get("notes") else ""
-        with st.expander(f"Lot {lot_num}  â  {stage_display}{note_indicator}"):
+        with st.expander(f"Lot {lot_num}  Ã¢ÂÂ  {stage_display}{note_indicator}"):
             # Show note history if it exists
             note_history = lot_data.get("note_history", [])
             if note_history:
@@ -792,7 +798,7 @@ elif page == "Job Tracker":
                 for nh in reversed(note_history[-5:]):
                     st.markdown(f'<div style="font-size:12px;padding:6px 10px;background:#f8fafc;border-radius:8px;margin-bottom:4px;border-left:3px solid #1a56db;">'
                                 f'<span style="color:#0f1d2e;">{nh["text"]}</span> '
-                                f'<span style="color:#8494a7;font-size:10px;">Â· {nh.get("action","")} Â· {nh.get("timestamp","")}</span></div>', unsafe_allow_html=True)
+                                f'<span style="color:#8494a7;font-size:10px;">ÃÂ· {nh.get("action","")} ÃÂ· {nh.get("timestamp","")}</span></div>', unsafe_allow_html=True)
             elif lot_data.get("notes"):
                 st.markdown(f'<div style="font-size:12px;color:#8494a7;margin-bottom:8px;">{lot_data["notes"]}</div>', unsafe_allow_html=True)
 
@@ -822,9 +828,9 @@ elif page == "Job Tracker":
                 "durations":{"Hang":1,"Scrap":1,"Tape":2,"Bed":2,"Skim":2,"Sand":1}}
             persist(); st.success(f"{nc_name} added!"); st.rerun()
 
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # ORDER
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 elif page == "Order":
     st.markdown('<div class="page-title">Drywall Order</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Generate and send material order emails</div>', unsafe_allow_html=True)
@@ -880,13 +886,13 @@ elif page == "Order":
         st.markdown('<div style="font-size:14px;font-weight:600;color:#0f1d2e;margin-bottom:10px;">Recent Orders</div>', unsafe_allow_html=True)
         for o in reversed(orders[-10:]):
             st.markdown(f'<div class="lot-row"><div><span class="lot-num">Lot {o["lot"]}</span>'
-                        f'<div class="lot-notes">{o["community"]} Â· {o["lot_code"]}</div></div>'
+                        f'<div class="lot-notes">{o["community"]} ÃÂ· {o["lot_code"]}</div></div>'
                         f'<div style="text-align:right;"><span style="font-size:12px;color:#0f1d2e;font-weight:500;">Deliver {o["scrap_date"]}</span>'
                         f'<div class="lot-notes">Sent {o.get("sent","")}</div></div></div>', unsafe_allow_html=True)
 
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # EPO TRACKER
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 elif page == "EPO Tracker":
     st.markdown('<div class="page-title">EPO Tracker</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Track extra paint orders and capture rate</div>', unsafe_allow_html=True)
@@ -895,8 +901,8 @@ elif page == "EPO Tracker":
     FIELD_MANAGER = "GABRIEL JORDAO"
     epo_log = data.get("epo_log", [])
 
-    # ââ Sync from Gmail inbox ââ
-    st.markdown('<div class="sf-alert sf-alert-info">Send EPOs from Outlook as usual â just CC '
+    # Ã¢ÂÂÃ¢ÂÂ Sync from Gmail inbox Ã¢ÂÂÃ¢ÂÂ
+    st.markdown('<div class="sf-alert sf-alert-info">Send EPOs from Outlook as usual Ã¢ÂÂ just CC '
                 '<strong>stancil.field.tracker@gmail.com</strong>. Hit Sync to pull them in.</div>', unsafe_allow_html=True)
 
     sync_col1, sync_col2 = st.columns([1,3])
@@ -918,7 +924,7 @@ elif page == "EPO Tracker":
     if "last_epo_sync" not in data or sync_col1.button("x", key="_hidden", disabled=True, label_visibility="hidden") is None:
         pass  # just for layout
 
-    # ââ Capture rate summary ââ
+    # Ã¢ÂÂÃ¢ÂÂ Capture rate summary Ã¢ÂÂÃ¢ÂÂ
     total_epos = len(epo_log)
     confirmed = len([e for e in epo_log if e.get("status") == "Confirmed"])
     denied = len([e for e in epo_log if e.get("status") == "Denied"])
@@ -933,16 +939,16 @@ elif page == "EPO Tracker":
     c3.markdown(f'<div class="metric-card"><div class="metric-value" style="color:#BF8F00">{pending}</div><div class="metric-label">Pending</div></div>',unsafe_allow_html=True)
     c4.markdown(f'<div class="metric-card"><div class="metric-value" style="color:#1F4E79">{capture_rate}</div><div class="metric-label">Capture Rate</div></div>',unsafe_allow_html=True)
 
-    # ââ Follow-up alerts (4+ days) ââ
+    # Ã¢ÂÂÃ¢ÂÂ Follow-up alerts (4+ days) Ã¢ÂÂÃ¢ÂÂ
     if followup_needed > 0:
         st.markdown(f'<div style="background:#FFF2CC;padding:12px;border-radius:8px;border-left:4px solid #BF8F00;margin:10px 0;">'
                     f'<strong>Follow-Up Needed ({followup_needed})</strong></div>',unsafe_allow_html=True)
         for e in epo_log:
             if e.get("status","Pending") == "Pending" and _epo_days_open(e) >= 4:
                 days = _epo_days_open(e)
-                st.warning(f"**Lot {e.get('lot','?')}** â {e.get('neighborhood','?')} | ${e.get('amount','?')} | {days} days open")
+                st.warning(f"**Lot {e.get('lot','?')}** Ã¢ÂÂ {e.get('neighborhood','?')} | ${e.get('amount','?')} | {days} days open")
 
-    # ââ Manual EPO entry (fallback) ââ
+    # Ã¢ÂÂÃ¢ÂÂ Manual EPO entry (fallback) Ã¢ÂÂÃ¢ÂÂ
     st.markdown("---")
     with st.expander("Add EPO Manually (if not sent by email)"):
         with st.form("epo_manual_form", clear_on_submit=True):
@@ -980,7 +986,7 @@ elif page == "EPO Tracker":
             persist()
             st.markdown(f'<div class="success-box">EPO for Lot {epo_lot} ({epo_comm}) added!</div>',unsafe_allow_html=True)
 
-    # ââ EPO History ââ
+    # Ã¢ÂÂÃ¢ÂÂ EPO History Ã¢ÂÂÃ¢ÂÂ
     st.markdown("---")
     st.markdown("### EPO History")
     if not epo_log:
@@ -1005,7 +1011,7 @@ elif page == "EPO Tracker":
             comm_display = epo.get('neighborhood', epo.get('community','?'))
             amt_display = epo.get('amount','?')
 
-            with st.expander(f"Lot {lot_display} â {comm_display} | ${amt_display} | {status}{overdue_tag}{review_tag}"):
+            with st.expander(f"Lot {lot_display} Ã¢ÂÂ {comm_display} | ${amt_display} | {status}{overdue_tag}{review_tag}"):
                 # If needs review, show editable fields
                 if epo.get("needs_review"):
                     st.markdown('<div style="background:#FFF2CC;padding:8px;border-radius:6px;margin-bottom:8px;font-size:13px;">'
@@ -1078,7 +1084,7 @@ elif page == "EPO Tracker":
                                 epo_log[real_idx]["confirmation_num"] = conf_num
                                 persist(); st.rerun()
 
-    # ââ Export to Excel ââ
+    # Ã¢ÂÂÃ¢ÂÂ Export to Excel Ã¢ÂÂÃ¢ÂÂ
     st.markdown("---")
     if st.button("Export EPO Spreadsheet"):
         try:
@@ -1155,9 +1161,9 @@ elif page == "EPO Tracker":
         except Exception as ex:
             st.error(f"Export failed: {ex}")
 
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # FIELD NOTES
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 elif page == "Field Notes":
     st.markdown('<div class="page-title">Field Notes</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Quick notes from the field with smart actions</div>', unsafe_allow_html=True)
@@ -1202,20 +1208,20 @@ elif page == "Field Notes":
             "Schedule Repair":"#FCE4D6","Schedule QC":"#E2EFDA","Schedule Homeowner Walk":"#E2EFDA","Schedule Hang":"#C6EFCE","Note Logged":"#f0f0f0"}
         for p in parsed:
             c = colors.get(p["action"],"#f0f0f0")
-            st.markdown(f'<div style="padding:10px;margin:6px 0;border-radius:8px;background:{c};border-left:4px solid #1F4E79;"><strong>Lot {p["lot"]}</strong> â {p["note"]}<br><small>Action: <strong>{p["action"]}</strong></small></div>',unsafe_allow_html=True)
+            st.markdown(f'<div style="padding:10px;margin:6px 0;border-radius:8px;background:{c};border-left:4px solid #1F4E79;"><strong>Lot {p["lot"]}</strong> Ã¢ÂÂ {p["note"]}<br><small>Action: <strong>{p["action"]}</strong></small></div>',unsafe_allow_html=True)
 
     st.markdown("---")
     st.markdown("### Recent Notes")
     all_notes = data.get("notes",[])
     if all_notes:
         for note in reversed(all_notes[-20:]):
-            st.text(f"[{note.get('timestamp','')}] Lot {note['lot']} ({note['community']}): {note['note']} â {note['action']}")
+            st.text(f"[{note.get('timestamp','')}] Lot {note['lot']} ({note['community']}): {note['note']} Ã¢ÂÂ {note['action']}")
     else:
         st.info("No notes yet.")
 
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 # SETTINGS
-# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 elif page == "Settings":
     st.markdown('<div class="page-title">Settings</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Email config, communities, and subs</div>', unsafe_allow_html=True)
@@ -1229,7 +1235,7 @@ elif page == "Settings":
     st.markdown(f"**Drywall Orders Email:** {DW_ORDERS_EMAIL}")
     with st.form("email_config"):
         app_pw = st.text_input("Gmail App Password", value=cfg.get("gmail_app_password",""), type="password",
-            help="Generate this at myaccount.google.com â Security â App Passwords")
+            help="Generate this at myaccount.google.com Ã¢ÂÂ Security Ã¢ÂÂ App Passwords")
         if st.form_submit_button("Save Email Config"):
             cfg["gmail_app_password"] = app_pw
             save_config(cfg)
