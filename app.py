@@ -291,15 +291,27 @@ def _parse_epo_subject(subject):
     subject_lower = subject.lower().strip()
     lot_num = ""
     community = ""
-    # Extract lot number: "lot 20", "lot20", "lot #20", "lot# 20"
-    lot_match = re.search(r'lot\s*#?\s*(\w+)', subject_lower)
-    if lot_match:
-        lot_num = lot_match.group(1).upper() if any(c.isalpha() for c in lot_match.group(1)) else lot_match.group(1)
-    # Extract community name by checking known communities
+    # Multi-lot support: "lots 1, 2, 3" or "lots 1 & 2"
+    multi_match = re.search(r'lots?\s*#?\s*([\d]+(?:\s*[,&/\s]\s*\d+)+)', subject_lower)
+    if multi_match:
+        nums = re.findall(r'\d+', multi_match.group(1))
+        lot_num = ",".join(nums)
+    else:
+        lot_match = re.search(r'lot\s*#?\s*(\w+)', subject_lower)
+        if lot_match:
+            lot_num = lot_match.group(1).upper() if any(c.isalpha() for c in lot_match.group(1)) else lot_match.group(1)
+    # Extract community name by checking known communities (exact match first)
     for comm_name in LOT_CODES.keys():
         if comm_name.lower() in subject_lower:
             community = comm_name
             break
+    # Partial match fallback
+    if not community:
+        for comm_name in LOT_CODES.keys():
+            words = comm_name.lower().split()
+            if len(words) > 1 and any(w in subject_lower for w in words if len(w) > 3):
+                community = comm_name
+                break
     return lot_num, community
 
 def _parse_epo_body(body_text):
@@ -463,6 +475,58 @@ def fetch_epo_emails(data):
         return new_epos, f"Found {len(new_epos)} new EPO email(s)."
     except Exception as e:
         return [], f"IMAP error: {str(e)}"
+
+def sync_epo_to_google_sheet(epo_log):
+    """Push EPO data to a Google Sheet for real-time sharing."""
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials
+    except ImportError:
+        return False, "gspread not installed"
+    # Load service account credentials from Streamlit secrets
+    try:
+        creds_dict = dict(st.secrets.get("gcp_service_account", {}))
+        if not creds_dict:
+            return False, "No Google service account configured in Secrets."
+        sheet_url = st.secrets.get("EPO_SHEET_URL", "")
+        if not sheet_url:
+            return False, "No EPO_SHEET_URL configured in Secrets."
+    except Exception as e:
+        return False, f"Secrets error: {str(e)}"
+    try:
+        scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        credentials = Credentials.from_service_account_info(creds_dict, scopes=scopes)
+        gc = gspread.authorize(credentials)
+        sh = gc.open_by_url(sheet_url)
+        ws = sh.sheet1
+        # Build header row
+        headers = ["Date", "Field Manager", "Builder", "Community", "Lot", "Lot Code",
+                   "Description", "Amount", "Status", "Builder Contact", "Confirmation #", "Days Open"]
+        # Build data rows
+        rows = [headers]
+        for e in epo_log:
+            rows.append([
+                e.get("date", ""),
+                e.get("field_manager", ""),
+                e.get("builder", ""),
+                e.get("neighborhood", ""),
+                e.get("lot", ""),
+                e.get("short_name", ""),
+                e.get("description", ""),
+                e.get("amount", ""),
+                e.get("status", "Pending"),
+                e.get("builder_contact", ""),
+                e.get("confirmation_num", ""),
+                str(_epo_days_open(e)),
+            ])
+        # Clear and write all data
+        ws.clear()
+        ws.update(rows, value_input_option="USER_ENTERED")
+        # Format header row
+        ws.format("A1:L1", {"textFormat": {"bold": True}})
+        return True, f"Synced {len(epo_log)} EPOs to Google Sheet."
+    except Exception as e:
+        return False, f"Google Sheets error: {str(e)}"
 
 def generate_schedule(comm_name, lot_num, start_date, data):
     comm = data["communities"].get(comm_name,{})
@@ -845,28 +909,64 @@ elif page == "EPO Tracker":
     FIELD_MANAGER = "GABRIEL JORDAO"
     epo_log = data.get("epo_log", [])
 
-    # -- Sync from Gmail inbox --
-    st.markdown('<div class="sf-alert sf-alert-info">Send EPOs from Outlook as usual -- just CC '
-                '<strong>stancil.field.tracker@gmail.com</strong>. Hit Sync to pull them in.</div>', unsafe_allow_html=True)
+    # -- Auto-sync on page load (5-minute cooldown) --
+    auto_sync_msg = ""
+    last_sync_str = data.get("last_epo_sync", "")
+    should_auto_sync = True
+    if last_sync_str:
+        try:
+            last_sync_dt = datetime.datetime.strptime(last_sync_str, "%m/%d/%Y %H:%M")
+            minutes_since = (datetime.datetime.now() - last_sync_dt).total_seconds() / 60
+            if minutes_since < 5:
+                should_auto_sync = False
+        except Exception:
+            pass
+    if should_auto_sync:
+        new_epos, sync_msg = fetch_epo_emails(data)
+        if new_epos:
+            data.setdefault("epo_log", []).extend(new_epos)
+            epo_log = data["epo_log"]
+            data["last_epo_sync"] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M")
+            persist()
+            needs_review = len([e for e in new_epos if e.get("needs_review")])
+            auto_sync_msg = f"Auto-synced {len(new_epos)} new EPO(s)!" + (f" ({needs_review} need review)" if needs_review else "")
+            # Auto-push to Google Sheet
+            gs_ok, gs_msg = sync_epo_to_google_sheet(epo_log)
+            if gs_ok:
+                auto_sync_msg += " | Google Sheet updated."
+        else:
+            data["last_epo_sync"] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M")
+            persist()
+
+    if auto_sync_msg:
+        st.markdown(f'<div class="success-box">{auto_sync_msg}</div>', unsafe_allow_html=True)
+
+    # -- Manual sync button --
+    st.markdown('<div class="sf-alert sf-alert-info">EPOs auto-sync when you open this page. CC '
+                '<strong>stancil.field.tracker@gmail.com</strong> on EPO emails from Outlook.</div>', unsafe_allow_html=True)
 
     sync_col1, sync_col2 = st.columns([1,3])
-    if sync_col1.button("Sync Inbox", type="primary"):
+    if sync_col1.button("Sync Now", type="primary"):
         with st.spinner("Checking Gmail for new EPO emails..."):
             new_epos, sync_msg = fetch_epo_emails(data)
         if new_epos:
             data.setdefault("epo_log", []).extend(new_epos)
             epo_log = data["epo_log"]
+            data["last_epo_sync"] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M")
             persist()
             needs_review = len([e for e in new_epos if e.get("needs_review")])
+            gs_ok, gs_msg = sync_epo_to_google_sheet(epo_log)
+            gs_note = " | Google Sheet updated." if gs_ok else ""
             st.markdown(f'<div class="success-box">Synced {len(new_epos)} new EPO(s)!'
-                        f'{"  (" + str(needs_review) + " need review)" if needs_review else ""}</div>',
+                        f'{"  (" + str(needs_review) + " need review)" if needs_review else ""}{gs_note}</div>',
                         unsafe_allow_html=True)
         else:
             st.info(sync_msg)
+            # Still push to Google Sheet on manual sync even if no new emails
+            gs_ok, gs_msg = sync_epo_to_google_sheet(epo_log)
+            if gs_ok:
+                st.markdown(f'<div class="success-box">Google Sheet updated with {len(epo_log)} EPOs.</div>', unsafe_allow_html=True)
     sync_col2.caption(f"Last sync: {data.get('last_epo_sync','Never')}  |  {len(epo_log)} EPOs tracked")
-    # Update last sync time
-    if "last_epo_sync" not in data or sync_col1.button("x", key="_hidden", disabled=True, label_visibility="hidden") is None:
-        pass  # just for layout
 
     # -- Capture rate summary --
     total_epos = len(epo_log)
@@ -928,6 +1028,7 @@ elif page == "EPO Tracker":
             data.setdefault("epo_log",[]).append(epo_entry)
             epo_log = data["epo_log"]
             persist()
+            sync_epo_to_google_sheet(epo_log)
             st.markdown(f'<div class="success-box">EPO for Lot {epo_lot} ({epo_comm}) added!</div>',unsafe_allow_html=True)
 
     # -- EPO History --
@@ -1027,6 +1128,18 @@ elif page == "EPO Tracker":
                             if st.form_submit_button("Save"):
                                 epo_log[real_idx]["confirmation_num"] = conf_num
                                 persist(); st.rerun()
+
+    # -- Google Sheet sync button --
+    st.markdown("---")
+    gs_col1, gs_col2 = st.columns([1,3])
+    if gs_col1.button("Push to Google Sheet"):
+        with st.spinner("Updating Google Sheet..."):
+            gs_ok, gs_msg = sync_epo_to_google_sheet(epo_log)
+        if gs_ok:
+            st.markdown(f'<div class="success-box">{gs_msg}</div>', unsafe_allow_html=True)
+        else:
+            st.warning(gs_msg)
+    gs_col2.caption("Pushes all EPO data to your shared Google Sheet for real-time visibility.")
 
     # -- Export to Excel --
     st.markdown("---")
@@ -1232,6 +1345,54 @@ elif page == "Settings":
                 st.error(f"IMAP failed: {e}")
         else:
             st.warning("No Gmail App Password configured yet.")
+
+        # Google Sheets Integration
+    st.markdown("---")
+    st.markdown("### Google Sheets Integration")
+    st.markdown("Connect a Google Sheet so your EPO data is always up to date and shareable with your team.")
+
+    # Check current Google Sheets config status
+    gs_configured = False
+    try:
+        gs_creds = dict(st.secrets.get("gcp_service_account", {}))
+        gs_url = st.secrets.get("EPO_SHEET_URL", "")
+        if gs_creds and gs_url:
+            gs_configured = True
+    except Exception:
+        gs_creds = {}
+        gs_url = ""
+
+    if gs_configured:
+        st.markdown('<div class="success-box">Google Sheets is configured and ready.</div>', unsafe_allow_html=True)
+        st.caption(f"Sheet URL: {gs_url}")
+        if st.button("Test Google Sheet Connection"):
+            with st.spinner("Testing connection..."):
+                ok, msg = sync_epo_to_google_sheet([])
+            if ok or "Synced 0" in msg:
+                st.markdown('<div class="success-box">Google Sheets connection works!</div>', unsafe_allow_html=True)
+            else:
+                st.error(f"Connection failed: {msg}")
+    else:
+        st.markdown('<div class="sf-alert sf-alert-warn">Google Sheets not configured yet. Follow the steps below.</div>', unsafe_allow_html=True)
+
+    with st.expander("Setup Instructions"):
+        st.markdown("""
+**Step 1: Create a Google Cloud Service Account**
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project (or use an existing one)
+3. Enable the **Google Sheets API** and **Google Drive API**
+4. Go to **IAM & Admin > Service Accounts** and create a new service account
+5. Create a JSON key for it and download it
+
+**Step 2: Create a Google Sheet**
+1. Create a new Google Sheet for EPO tracking
+2. Share it with the service account email (found in the JSON key file)
+3. Give it **Editor** access
+4. Copy the full URL of the sheet
+
+**Step 3: Add to Streamlit Secrets**
+Go to your app dashboard on share.streamlit.io, click Settings > Secrets, and add the EPO_SHEET_URL and gcp_service_account section.
+""")
 
     st.markdown("---")
     st.markdown("### Community Settings")
