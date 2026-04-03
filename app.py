@@ -909,6 +909,19 @@ elif page == "EPO Tracker":
     FIELD_MANAGER = "GABRIEL JORDAO"
     epo_log = data.get("epo_log", [])
 
+    # -- Auto-refresh every 30 minutes for background sync --
+    st.markdown("""<script>
+    (function() {
+        if (!window._epoAutoRefresh) {
+            window._epoAutoRefresh = true;
+            setTimeout(function() {
+                window._epoAutoRefresh = false;
+                window.parent.location.reload();
+            }, 30 * 60 * 1000);
+        }
+    })();
+    </script>""", unsafe_allow_html=True)
+
     # -- Auto-sync on page load (5-minute cooldown) --
     auto_sync_msg = ""
     last_sync_str = data.get("last_epo_sync", "")
