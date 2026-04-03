@@ -208,6 +208,13 @@ def save_data(data):
     with open(DATA_FILE,"w") as f: json.dump(data,f,default=str,indent=2)
 
 def load_config():
+    # Try Streamlit secrets first (works on Streamlit Cloud)
+    try:
+        pw = st.secrets.get("GMAIL_APP_PASSWORD", "")
+        if pw:
+            return {"gmail_app_password": pw}
+    except Exception:
+        pass
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE) as f: return json.load(f)
     return {"gmail_app_password":""}
@@ -717,56 +724,113 @@ elif page == "Order":
     data = get_data()
     comms = data["communities"]
 
-    with st.form("order_form"):
-        col1, col2 = st.columns(2)
-        comm_name = col1.selectbox("Community", list(comms.keys()))
-        lot_num = col2.text_input("Lot Number")
-        building_num = ""
-        if LOT_CODES.get(comm_name,{}).get("needs_building"):
-            building_num = st.text_input("Building Number (Galloway)")
-        scrap_date = st.date_input("Scrap Date (delivery date)")
-        order_btn = st.form_submit_button("Generate Order")
+    # Initialize order lots list in session state
+    if "order_lots" not in st.session_state:
+        st.session_state.order_lots = [{"community": list(comms.keys())[0], "lot_num": "", "building_num": ""}]
 
-    if order_btn and lot_num:
-        lot_code = get_lot_code(comm_name, lot_num, building_num)
-        scrap_short = scrap_date.strftime("%m/%d")
+    st.markdown('<div style="font-size:14px;font-weight:600;color:#0f1d2e;margin-bottom:8px;">Lots to Order</div>', unsafe_allow_html=True)
+    st.caption("Add multiple lots for townhouses or units coming out the same day.")
 
-        email_subject = f"drywall materials for lot {lot_num} {comm_name.lower()}"
-        email_body = f"please have drywall material delivered to {lot_code} on {scrap_short}\nthank you"
+    # Render each lot entry
+    for idx, lot_entry in enumerate(st.session_state.order_lots):
+        c1, c2, c3 = st.columns([3, 2, 1])
+        comm_val = c1.selectbox("Community", list(comms.keys()), key=f"ord_comm_{idx}",
+            index=list(comms.keys()).index(lot_entry["community"]) if lot_entry["community"] in comms else 0,
+            label_visibility="collapsed" if idx > 0 else "visible")
+        lot_val = c2.text_input("Lot #", value=lot_entry["lot_num"], key=f"ord_lot_{idx}",
+            label_visibility="collapsed" if idx > 0 else "visible")
+        if idx > 0:
+            if c3.button("X", key=f"ord_rm_{idx}", help="Remove this lot"):
+                st.session_state.order_lots.pop(idx)
+                st.rerun()
+        else:
+            c3.write("")
+        # Update session state with current widget values
+        st.session_state.order_lots[idx]["community"] = comm_val
+        st.session_state.order_lots[idx]["lot_num"] = lot_val
+        # Building number for Galloway
+        if LOT_CODES.get(comm_val, {}).get("needs_building"):
+            bld = st.text_input(f"Building # (Galloway) - Lot {idx+1}", value=lot_entry.get("building_num",""), key=f"ord_bld_{idx}")
+            st.session_state.order_lots[idx]["building_num"] = bld
 
-        st.markdown(f'''<div class="sf-card">
+    acol1, acol2 = st.columns(2)
+    if acol1.button("+ Add Another Lot", type="secondary"):
+        st.session_state.order_lots.append({"community": list(comms.keys())[0], "lot_num": "", "building_num": ""})
+        st.rerun()
+
+    scrap_date = st.date_input("Scrap Date (delivery date)")
+
+    # Generate order
+    if st.button("Generate Order", type="primary"):
+        valid_lots = [l for l in st.session_state.order_lots if l["lot_num"].strip()]
+        if not valid_lots:
+            st.error("Enter at least one lot number.")
+        else:
+            # Build email for all lots
+            lot_lines = []
+            lot_codes_list = []
+            lot_labels = []
+            scrap_short = scrap_date.strftime("%m/%d")
+            for vl in valid_lots:
+                lc = get_lot_code(vl["community"], vl["lot_num"], vl.get("building_num",""))
+                lot_codes_list.append(lc)
+                lot_lines.append(f"please have drywall material delivered to {lc} on {scrap_short}")
+                lot_labels.append(f"lot {vl['lot_num']} {vl['community'].lower()}")
+
+            if len(valid_lots) == 1:
+                email_subject = f"drywall materials for {lot_labels[0]}"
+            else:
+                email_subject = f"drywall materials for {', '.join(lot_labels)}"
+            email_body = "\n".join(lot_lines) + "\nthank you"
+
+            st.session_state.order_preview = {
+                "subject": email_subject,
+                "body": email_body,
+                "valid_lots": valid_lots,
+                "lot_codes": lot_codes_list,
+                "scrap_date": scrap_date.strftime("%m/%d/%Y"),
+                "scrap_short": scrap_short,
+            }
+
+    # Show preview if generated
+    if "order_preview" in st.session_state:
+        op = st.session_state.order_preview
+        st.markdown(f\'\'\'<div class="sf-card">
             <div style="font-size:11px;color:#8494a7;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;">Order Preview</div>
             <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">To:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{DW_ORDERS_EMAIL}</span></div>
             <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">CC:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{DW_CC_EMAILS}</span></div>
-            <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">Subject:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{email_subject}</span></div>
-            <div style="background:#f8fafc;border-radius:10px;padding:14px;margin-top:12px;font-size:13px;color:#334155;line-height:1.6;border:1px solid #e2e8f0;">{email_body.replace(chr(10),"<br>")}</div>
-        </div>''', unsafe_allow_html=True)
+            <div style="margin-bottom:8px;"><span style="font-size:12px;color:#8494a7;">Subject:</span> <span style="font-size:13px;font-weight:500;color:#0f1d2e;">{op["subject"]}</span></div>
+            <div style="background:#f8fafc;border-radius:10px;padding:14px;margin-top:12px;font-size:13px;color:#334155;line-height:1.6;border:1px solid #e2e8f0;">{op["body"].replace(chr(10),"<br>")}</div>
+        </div>\'\'\', unsafe_allow_html=True)
 
-        col1, col2 = st.columns(2)
-        if col1.button("Send Order Email", type="primary"):
-            success, msg = send_email(DW_ORDERS_EMAIL, email_subject, email_body, cc=DW_CC_EMAILS)
+        scol1, scol2 = st.columns(2)
+        if scol1.button("Send Order Email", type="primary", key="send_order"):
+            success, msg = send_email(DW_ORDERS_EMAIL, op["subject"], op["body"], cc=DW_CC_EMAILS)
             if success:
-                # Log the order
-                data.setdefault("orders",[]).append({
-                    "community": comm_name, "lot": lot_num, "lot_code": lot_code,
-                    "scrap_date": scrap_date.strftime("%m/%d/%Y"),
-                    "sent": datetime.datetime.now().strftime("%m/%d/%Y %H:%M"),
-                })
+                for i, vl in enumerate(op["valid_lots"]):
+                    data.setdefault("orders",[]).append({
+                        "community": vl["community"], "lot": vl["lot_num"], "lot_code": op["lot_codes"][i],
+                        "scrap_date": op["scrap_date"],
+                        "sent": datetime.datetime.now().strftime("%m/%d/%Y %H:%M"),
+                    })
                 persist()
-                st.markdown(f'<div class="success-box">Order sent to {DW_ORDERS_EMAIL}</div>',unsafe_allow_html=True)
+                lot_count = len(op["valid_lots"])
+                st.markdown(f'<div class="success-box">Order sent for {lot_count} lot(s) to {DW_ORDERS_EMAIL}</div>',unsafe_allow_html=True)
+                del st.session_state.order_preview
+                st.session_state.order_lots = [{"community": list(comms.keys())[0], "lot_num": "", "building_num": ""}]
             else:
                 st.error(msg)
-        if col2.button("Copy to Clipboard"):
-            st.code(f"To: {DW_ORDERS_EMAIL}\nCC: {DW_CC_EMAILS}\nSubject: {email_subject}\n\n{email_body}", language=None)
+        if scol2.button("Copy to Clipboard", key="copy_order"):
+            st.code(f"To: {DW_ORDERS_EMAIL}\nCC: {DW_CC_EMAILS}\nSubject: {op['subject']}\n\n{op['body']}", language=None)
 
     # Recent orders
     orders = data.get("orders", [])
     if orders:
         st.markdown("---")
         st.markdown('<div style="font-size:14px;font-weight:600;color:#0f1d2e;margin-bottom:10px;">Recent Orders</div>', unsafe_allow_html=True)
-        for o in reversed(orders[-10:]):
+        for o in reversed(orders[-15:]):
             st.markdown(f'<div class="lot-row"><div><span class="lot-num">Lot {o["lot"]}</span>'
-                        f'<div class="lot-notes">{o["community"]} | {o["lot_code"]}</div></div>'
+                        f'<div class="lot-notes">{o["community"]} - {o["lot_code"]}</div></div>'
                         f'<div style="text-align:right;"><span style="font-size:12px;color:#0f1d2e;font-weight:500;">Deliver {o["scrap_date"]}</span>'
                         f'<div class="lot-notes">Sent {o.get("sent","")}</div></div></div>', unsafe_allow_html=True)
 
@@ -1113,9 +1177,30 @@ elif page == "Settings":
     st.markdown("### Email Configuration")
     st.markdown(f"**Tracker Email:** {TRACKER_EMAIL}")
     st.markdown(f"**Drywall Orders Email:** {DW_ORDERS_EMAIL}")
+
+    # Check if password is configured
+    has_password = bool(cfg.get("gmail_app_password",""))
+    if has_password:
+        st.markdown('<div class="success-box">Gmail App Password is configured.</div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<div class="sf-alert sf-alert-warn">Gmail App Password not set. Email features will not work.</div>', unsafe_allow_html=True)
+
+    # Check if using Streamlit secrets
+    using_secrets = False
+    try:
+        if st.secrets.get("GMAIL_APP_PASSWORD",""):
+            using_secrets = True
+    except Exception:
+        pass
+
+    if using_secrets:
+        st.caption("Password loaded from Streamlit Secrets (GMAIL_APP_PASSWORD).")
+    else:
+        st.caption("For Streamlit Cloud: go to your app dashboard > Settings > Secrets and add: GMAIL_APP_PASSWORD = \"your-app-password\"")
+
     with st.form("email_config"):
-        app_pw = st.text_input("Gmail App Password", value=cfg.get("gmail_app_password",""), type="password",
-            help="Generate this at myaccount.google.com -> Security -> App Passwords")
+        app_pw = st.text_input("Gmail App Password", value="" if using_secrets else cfg.get("gmail_app_password",""), type="password",
+            help="Generate at myaccount.google.com > Security > App Passwords. For Streamlit Cloud, use Secrets instead.")
         if st.form_submit_button("Save Email Config"):
             cfg["gmail_app_password"] = app_pw
             save_config(cfg)
@@ -1128,6 +1213,25 @@ elif page == "Settings":
                 st.markdown('<div class="success-box">Connection test passed! Emails will work.</div>',unsafe_allow_html=True)
             except Exception as e:
                 st.error(f"Connection test failed: {e}")
+
+    if st.button("Test Current Email Connection"):
+        test_pw = cfg.get("gmail_app_password","")
+        if test_pw:
+            try:
+                with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                    server.login(TRACKER_EMAIL, test_pw)
+                st.markdown('<div class="success-box">SMTP connection OK! Drywall orders will send.</div>',unsafe_allow_html=True)
+            except Exception as e:
+                st.error(f"SMTP failed: {e}")
+            try:
+                mail = imaplib.IMAP4_SSL("imap.gmail.com")
+                mail.login(TRACKER_EMAIL, test_pw)
+                mail.logout()
+                st.markdown('<div class="success-box">IMAP connection OK! EPO email sync will work.</div>',unsafe_allow_html=True)
+            except Exception as e:
+                st.error(f"IMAP failed: {e}")
+        else:
+            st.warning("No Gmail App Password configured yet.")
 
     st.markdown("---")
     st.markdown("### Community Settings")
